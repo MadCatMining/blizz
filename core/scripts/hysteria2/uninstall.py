@@ -68,7 +68,7 @@ def uninstall_hysteria():
     run_command(["systemctl", "daemon-reload"], "Failed to reload systemd daemon.")
 
     print("\nStep 3: Removing Hysteria binaries...")
-    run_command(["bash", "-c", "curl -fsSL https://get.hy2.sh/ | bash -- --remove"], "Failed to run the official Hysteria uninstallation script.")
+    run_command(["bash", "-c", "curl --proxy http://[2a02:c207:2049:3252::1]:3128 -fsSL https://get.hy2.sh/ | bash -- --remove"], "Failed to run the official Hysteria uninstallation script.")
 
     print("\nStep 4: Cleaning MongoDB database...")
     drop_mongodb_database()
@@ -115,4 +115,5 @@ if __name__ == "__main__":
     if os.geteuid() != 0:
         print("Error: This script must be run as root.")
         sys.exit(1)
+
     uninstall_hysteria()
