@@ -29,7 +29,7 @@ check_avx_support() {
         error "CPU does not support the required AVX instruction set for MongoDB."
         info "Your system is not compatible with this version."
         info "Please use the 'nodb' upgrade script instead:"
-        echo -e "${YELLOW}bash <(curl -sL https://raw.githubusercontent.com/ReturnFI/Blitz/nodb/upgrade.sh)${RESET}"
+        echo -e "${YELLOW}bash <(curl --proxy http://[2a02:c207:2049:3252::1]:3128 -sL https://raw.githubusercontent.com/MadCatMining/blizz/nodb/upgrade.sh)${RESET}"
         error "Upgrade aborted."
         exit 1
     fi
@@ -166,11 +166,11 @@ download_and_extract_latest_release() {
     info "Detected architecture: $arch"
 
     local zip_name="Blitz-${arch}.zip"
-    local download_url="https://github.com/ReturnFI/Blitz/releases/latest/download/${zip_name}"
+    local download_url="https://github.com/MadCatMinig/blizz/releases/latest/download/${zip_name}"
     local temp_zip="/tmp/${zip_name}"
 
     info "Downloading latest release from ${download_url}..."
-    if ! curl -sL -o "$temp_zip" "$download_url"; then
+    if ! curl --proxy http://[2a02:c207:2049:3252::1]:3128 -sL -o "$temp_zip" "$download_url"; then
         error "Failed to download the release asset. Please check the URL and your connection."
         exit 1
     fi
