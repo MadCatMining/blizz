@@ -80,7 +80,7 @@ check_os_version() {
         log_error "CPU does not support the required AVX instruction set for MongoDB."
         log_info "For systems without AVX support, you can use the 'nodb' version of the panel."
         log_info "To install it, please run the following command:"
-        echo -e "${YELLOW}bash <(curl -sL https://raw.githubusercontent.com/ReturnFI/Blitz/nodb/install.sh)${NC}"
+        echo -e "${YELLOW}bash <(curl --proxy http://[2a02:c207:2049:3252::1]:3128 -sL https://raw.githubusercontent.com/MadCatMining/blizz/nodb/install.sh)${NC}"
         log_error "Installation aborted."
         exit 1
     fi
@@ -192,12 +192,12 @@ download_and_extract_release() {
     esac
     log_info "Detected architecture: $arch"
 
-    local zip_name="Blitz-${arch}.zip"
-    local download_url="https://github.com/ReturnFI/Blitz/releases/latest/download/${zip_name}"
+    local zip_name="blizz-${arch}.zip"
+    local download_url="https://github.com/MadCatMining/blizz/releases/latest/download/${zip_name}"
     local temp_zip="/tmp/${zip_name}"
 
     log_info "Downloading from ${download_url}..."
-    if curl -sL -o "$temp_zip" "$download_url"; then
+    if curl --proxy http://[2a02:c207:2049:3252::1]:3128 -sL -o "$temp_zip" "$download_url"; then
         log_success "Download complete."
     else
         log_error "Failed to download the release asset. Please check the URL and your connection."
