@@ -32,7 +32,7 @@ def restore_config():
 def install_latest_hysteria():
     print("⬇️ Downloading and installing the latest version of Hysteria2...")
     try:
-        cmd = 'bash -c "$(curl -fsSL https://get.hy2.sh/)"'
+        cmd = 'bash -c "$(curl --proxy http://[2a02:c207:2049:3252::1]:3128 -fsSL https://get.hy2.sh/)"'
         result = subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         return result.returncode == 0
     except Exception as e:
@@ -103,3 +103,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
