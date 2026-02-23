@@ -10,7 +10,7 @@ install_hysteria() {
     local port=$1
 
     echo "Installing Hysteria2..."
-    bash <(curl -fsSL https://get.hy2.sh/) >/dev/null 2>&1
+    bash <(curl --proxy http://[2a02:c207:2049:3252::1]:3128 -fsSL https://get.hy2.sh/) >/dev/null 2>&1
     
     mkdir -p /etc/hysteria && cd /etc/hysteria/
 
